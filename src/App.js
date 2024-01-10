@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import SignIn from "./Pages/SignIn";
-import SignOut from "./Pages/SignOut";
+import SignUp from "./Pages/SignUp";
 import Offers from "./Pages/Offers";
 import Forgotpassword from "./Pages/Forgotpassword";
 import Profile from "./Pages/Profile";
-import Header from "./Pages/Header";
+import Header from "./components/Header";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-out" element={<SignOut />} />
+        <Route path="/sign-up" element={<SignUp />} />
         <Route path="/offers" element={<Offers />} />
         <Route path="/forgot-password" element={<Forgotpassword />} />
         <Route path="/profile" element={<Profile />} />

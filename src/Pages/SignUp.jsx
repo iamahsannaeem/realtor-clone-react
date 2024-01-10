@@ -3,14 +3,15 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
-const SignIn = () => {
+const SignUp = () => {
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
 
-  const { email, password } = formData;
+  const { name, email, password } = formData;
   const onChange = (event) => {
     setFormData((prev) => ({ ...prev, [event.target.id]: event.target.value }));
     console.log(event.target.value);
@@ -19,7 +20,7 @@ const SignIn = () => {
     <>
       <section>
         <h1 className="text-3xl text-center font-bold my-6 uppercase">
-          Sign In
+          Sign Up
         </h1>
         <div className="max-w-6xl mx-auto flex flex-wrap justify-center items-center mb-12 md:mb-6 p-6 md:p-0">
           <div className="w-full md:w-[60%] lg:w-[50%]">
@@ -31,6 +32,14 @@ const SignIn = () => {
           </div>
           <div className="w-full md:w-[60%] lg:w-[40%] lg:ml-5 mt-6">
             <form className="space-y-6">
+              <input
+                type="name"
+                className="w-full h-10 outline-none pl-2 rounded-md"
+                id="name"
+                value={name}
+                onChange={onChange}
+                placeholder="Enter Your Name:"
+              />
               <input
                 type="email"
                 className="w-full h-10 outline-none pl-2 rounded-md"
@@ -63,9 +72,12 @@ const SignIn = () => {
             </form>
             <div className="flex justify-between my-2">
               <p>
-                Create an Account?{" "}
-                <Link to="/sign-up" className="text-red-500 hover:underline">
-                  Sign Up
+                You have already account ?
+                <Link
+                  to="/sign-in"
+                  className="ml-1 text-red-500 hover:underline"
+                >
+                  Sign In
                 </Link>
               </p>
               <Link
@@ -76,14 +88,14 @@ const SignIn = () => {
               </Link>
             </div>
             <button className="w-full my-2 bg-blue-500 py-3 rounded-md text-white hover:bg-blue-600 shadow-md hover:shadow-lg active:bg-gray-700 uppercase font-semibold">
-              Sign In
+              Sign Up
             </button>
             <div className="flex gap-1 items-center before:border-t-gray-500 before:border-t before:flex-1 after:border-t after:flex-1 after:border-t-gray-500">
               <p className="text-center">OR</p>
             </div>
             <button className="w-full my-2 bg-red-500 py-3 rounded-md text-white hover:bg-red-600 shadow-md hover:shadow-lg active:bg-gray-700 flex justify-center items-center uppercase font-semibold">
               <FcGoogle className="mr-2" />
-              Sign In With Gmail
+              Sign Up With Gmail
             </button>
           </div>
         </div>
@@ -92,4 +104,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
