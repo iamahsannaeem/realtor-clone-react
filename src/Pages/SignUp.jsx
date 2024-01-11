@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
+import OAuth from "../components/OAuth";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -33,12 +33,12 @@ const SignUp = () => {
           <div className="w-full md:w-[60%] lg:w-[40%] lg:ml-5 mt-6">
             <form className="space-y-6">
               <input
-                type="name"
+                type="text"
                 className="w-full h-10 outline-none pl-2 rounded-md"
                 id="name"
                 value={name}
                 onChange={onChange}
-                placeholder="Enter Your Name:"
+                placeholder="Enter Your Full Name:"
               />
               <input
                 type="email"
@@ -93,10 +93,7 @@ const SignUp = () => {
             <div className="flex gap-1 items-center before:border-t-gray-500 before:border-t before:flex-1 after:border-t after:flex-1 after:border-t-gray-500">
               <p className="text-center">OR</p>
             </div>
-            <button className="w-full my-2 bg-red-500 py-3 rounded-md text-white hover:bg-red-600 shadow-md hover:shadow-lg active:bg-gray-700 flex justify-center items-center uppercase font-semibold">
-              <FcGoogle className="mr-2" />
-              Sign Up With Gmail
-            </button>
+            <OAuth />
           </div>
         </div>
       </section>

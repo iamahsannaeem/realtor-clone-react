@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
+import OAuth from "../components/OAuth";
 
 const Forgotpassword = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +11,7 @@ const Forgotpassword = () => {
   return (
     <>
       <section>
-        <h1 className="text-3xl text-center font-bold my-6 uppercase uppercase">
+        <h1 className="text-3xl text-center font-bold my-6 uppercase">
           Forgot Password
         </h1>
         <div className="max-w-6xl mx-auto flex flex-wrap justify-center items-center mb-12 md:mb-6 p-6 md:p-0">
@@ -50,10 +50,7 @@ const Forgotpassword = () => {
             <div className="flex gap-1 items-center before:border-t-gray-500 before:border-t before:flex-1 after:border-t after:flex-1 after:border-t-gray-500">
               <p className="text-center">OR</p>
             </div>
-            <button className="w-full my-2 bg-red-500 py-3 rounded-md text-white hover:bg-red-600 shadow-md hover:shadow-lg active:bg-gray-700 flex justify-center items-center uppercase font-semibold">
-              <FcGoogle className="mr-2" />
-              Sign In With Gmail
-            </button>
+            <OAuth />
           </div>
         </div>
       </section>
