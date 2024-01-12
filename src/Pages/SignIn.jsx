@@ -60,24 +60,24 @@ const SignIn = () => {
                   />
                 )}
               </div>
-            </form>
-            <div className="flex justify-between my-2">
-              <p>
-                Create an Account?{" "}
-                <Link to="/sign-up" className="text-red-500 hover:underline">
-                  Sign Up
+              <div className="flex justify-between my-2">
+                <p>
+                  Create an Account?
+                  <Link to="/sign-up" className="text-red-500 hover:underline">
+                    Sign Up
+                  </Link>
+                </p>
+                <Link
+                  to="/forgot-password"
+                  className="text-blue-500 hover:underline"
+                >
+                  Forgot Password ?
                 </Link>
-              </p>
-              <Link
-                to="/forgot-password"
-                className="text-blue-500 hover:underline"
-              >
-                Forgot Password
-              </Link>
-            </div>
-            <button className="w-full my-2 bg-blue-500 py-3 rounded-md text-white hover:bg-blue-600 shadow-md hover:shadow-lg active:bg-gray-700 uppercase font-semibold">
-              Sign In
-            </button>
+              </div>
+              <button className="w-full my-2 bg-blue-500 py-3 rounded-md text-white hover:bg-blue-600 shadow-md hover:shadow-lg active:bg-gray-700 uppercase font-semibold">
+                Sign In
+              </button>
+            </form>
             <div className="flex gap-1 items-center before:border-t-gray-500 before:border-t before:flex-1 after:border-t after:flex-1 after:border-t-gray-500">
               <p className="text-center">OR</p>
             </div>
