@@ -30,7 +30,7 @@ const SignIn = () => {
             />
           </div>
           <div className="w-full md:w-[60%] lg:w-[40%] lg:ml-5 mt-6">
-            <form className="space-y-6">
+            <form className="space-y-3">
               <input
                 type="email"
                 className="w-full h-10 outline-none pl-2 rounded-md"
@@ -77,11 +77,11 @@ const SignIn = () => {
               <button className="w-full my-2 bg-blue-500 py-3 rounded-md text-white hover:bg-blue-600 shadow-md hover:shadow-lg active:bg-gray-700 uppercase font-semibold">
                 Sign In
               </button>
+              <div className="flex gap-1 items-center before:border-t-gray-500 before:border-t before:flex-1 after:border-t after:flex-1 after:border-t-gray-500">
+                <p className="text-center">OR</p>
+              </div>
+              <OAuth />
             </form>
-            <div className="flex gap-1 items-center before:border-t-gray-500 before:border-t before:flex-1 after:border-t after:flex-1 after:border-t-gray-500">
-              <p className="text-center">OR</p>
-            </div>
-            <OAuth />
           </div>
         </div>
       </section>

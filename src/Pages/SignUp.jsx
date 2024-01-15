@@ -80,8 +80,8 @@ const SignUp = () => {
               alt="key"
             />
           </div>
-          <div className="w-full md:w-[60%] lg:w-[40%] lg:ml-5 mt-6">
-            <form className="space-y-6" onSubmit={onSubmit}>
+          <div className="w-full md:w-[60%] lg:w-[40%] lg:ml-5 mt-4">
+            <form className="space-y-4" onSubmit={onSubmit}>
               <input
                 type="text"
                 className="w-full h-10 outline-none pl-2 rounded-md"
@@ -138,15 +138,15 @@ const SignUp = () => {
               </div>
               <button
                 type="submit"
-                className="w-full my-2 bg-blue-500 py-3 rounded-md text-white hover:bg-blue-600 shadow-md hover:shadow-lg active:bg-gray-700 uppercase font-semibold"
+                className="w-full my-1 bg-blue-500 py-3 rounded-md text-white hover:bg-blue-600 shadow-md hover:shadow-lg active:bg-gray-700 uppercase font-semibold"
               >
                 Sign Up
               </button>
+              <div className="flex gap-1 items-center before:border-t-gray-500 before:border-t before:flex-1 after:border-t after:flex-1 after:border-t-gray-500">
+                <p className="text-center">OR</p>
+              </div>
+              <OAuth />
             </form>
-            <div className="flex gap-1 items-center before:border-t-gray-500 before:border-t before:flex-1 after:border-t after:flex-1 after:border-t-gray-500">
-              <p className="text-center">OR</p>
-            </div>
-            <OAuth />
           </div>
         </div>
       </section>
