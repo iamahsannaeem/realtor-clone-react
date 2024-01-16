@@ -63,6 +63,9 @@ const SignUp = () => {
       ) {
         toast.error("Password should be at least 6 characters");
       }
+      if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+        toast.error("Email Already In use");
+      }
     }
   };
 
