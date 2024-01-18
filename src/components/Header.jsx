@@ -5,7 +5,7 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   return (
-    <div className="sticky top-0 bg-white  z-10 shadow-md">
+    <div className="sticky top-0 bg-white  z-10 shadow-md shadow-gray-300">
       <header className="max-w-6xl px-1 mx-auto flex justify-between items-center">
         <div>
           <img
