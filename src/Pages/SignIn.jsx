@@ -1,115 +1,114 @@
-import React, { useState } from "react";
-import { FaEyeSlash, FaEye } from "react-icons/fa";
+import { useState } from "react";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../components/OAuth";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
 
-const SignIn = () => {
+export default function SignIn() {
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
-
   const { email, password } = formData;
-  const onChange = (event) => {
-    setFormData((prev) => ({ ...prev, [event.target.id]: event.target.value }));
-    console.log(event.target.value);
-  };
-  const onSubmit = async (e) => {
+  const navigate = useNavigate();
+  function onChange(e) {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  }
+  async function onSubmit(e) {
     e.preventDefault();
     try {
       const auth = getAuth();
-      const userCredentials = await signInWithEmailAndPassword(
+      const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
-      if (userCredentials.user) {
+      if (userCredential.user) {
         navigate("/");
-        toast.success("Signed In Successfully");
       }
     } catch (error) {
-      toast.error("Something Went Wrong");
+      toast.error("Bad user credentials");
     }
-  };
+  }
   return (
-    <>
-      <section>
-        <h1 className="text-3xl text-center font-bold my-6 uppercase">
-          Sign In
-        </h1>
-        <div className="max-w-6xl mx-auto flex flex-wrap justify-center items-center mb-12 md:mb-6 p-6 md:p-0">
-          <div className="w-full md:w-[60%] lg:w-[50%]">
-            <img
-              className="rounded-xl h-[400px] object-cover"
-              src="https://images.unsplash.com/photo-1562770584-eaf50b017307?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGtleXxlbnwwfHwwfHx8MA%3D%3D"
-              alt="key"
+    <section>
+      <h1 className="text-3xl text-center mt-6 font-bold">Sign In</h1>
+      <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto">
+        <div className="md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
+          <img
+            src="https://images.unsplash.com/flagged/photo-1564767609342-620cb19b2357?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1373&q=80"
+            alt="key"
+            className="w-full rounded-2xl"
+          />
+        </div>
+        <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20">
+          <form onSubmit={onSubmit}>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={onChange}
+              placeholder="Email address"
+              className="mb-6 w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
             />
-          </div>
-          <div className="w-full md:w-[60%] lg:w-[40%] lg:ml-5 mt-6">
-            <form className="space-y-3" onSubmit={onSubmit}>
+            <div className="relative mb-6">
               <input
-                type="email"
-                className="w-full h-10 outline-none pl-2 rounded-md"
-                id="email"
-                value={email}
+                type={showPassword ? "text" : "password"}
+                id="password"
+                value={password}
                 onChange={onChange}
-                placeholder="Enter Your Email:"
+                placeholder="Password"
+                className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
               />
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  className="w-full h-10 outline-none pl-2 rounded-md"
-                  id="password"
-                  value={password}
-                  onChange={onChange}
-                  placeholder="Enter Password:"
+              {showPassword ? (
+                <AiFillEyeInvisible
+                  className="absolute right-3 top-3 text-xl cursor-pointer"
+                  onClick={() => setShowPassword((prevState) => !prevState)}
                 />
-                {showPassword ? (
-                  <FaEye
-                    className="absolute right-3 top-3 cursor-pointer"
-                    onClick={() => setShowPassword(!showPassword)}
-                  />
-                ) : (
-                  <FaEyeSlash
-                    className="absolute right-3 top-3 cursor-pointer"
-                    onClick={() => setShowPassword(!showPassword)}
-                  />
-                )}
-              </div>
-              <div className="flex justify-between my-2">
-                <p>
-                  Create an Account?
-                  <Link to="/sign-up" className="text-red-500 hover:underline">
-                    Sign Up
-                  </Link>
-                </p>
+              ) : (
+                <AiFillEye
+                  className="absolute right-3 top-3 text-xl cursor-pointer"
+                  onClick={() => setShowPassword((prevState) => !prevState)}
+                />
+              )}
+            </div>
+            <div className="flex justify-between whitespace-nowrap text-sm sm:text-lg">
+              <p className="mb-6">
+                Don't have a account?
+                <Link
+                  to="/sign-up"
+                  className="text-red-600 hover:text-red-700 transition duration-200 ease-in-out ml-1"
+                >
+                  Register
+                </Link>
+              </p>
+              <p>
                 <Link
                   to="/forgot-password"
-                  className="text-blue-500 hover:underline"
+                  className="text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out"
                 >
-                  Forgot Password ?
+                  Forgot password?
                 </Link>
-              </div>
-              <button
-                type="submit"
-                className="w-full my-2 bg-blue-500 py-3 rounded-md text-white hover:bg-blue-600 shadow-md hover:shadow-lg active:bg-gray-700 uppercase font-semibold"
-              >
-                Sign In
-              </button>
-              <div className="flex gap-1 items-center before:border-t-gray-500 before:border-t before:flex-1 after:border-t after:flex-1 after:border-t-gray-500">
-                <p className="text-center">OR</p>
-              </div>
-              <OAuth />
-            </form>
-          </div>
+              </p>
+            </div>
+            <button
+              className="w-full bg-blue-600 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800"
+              type="submit"
+            >
+              Sign in
+            </button>
+            <div className="flex items-center  my-4 before:border-t before:flex-1 before:border-gray-300 after:border-t after:flex-1 after:border-gray-300">
+              <p className="text-center font-semibold mx-4">OR</p>
+            </div>
+            <OAuth />
+          </form>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
-};
-
-export default SignIn;
+}

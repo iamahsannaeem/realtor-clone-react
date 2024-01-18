@@ -1,49 +1,44 @@
-import React from "react";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { doc, serverTimestamp, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import { useNavigate } from "react-router";
-
-const OAuth = () => {
+import { useNavigate } from "react-router-dom";
+export default function OAuth() {
   const navigate = useNavigate();
-  const onGoogleClick = async () => {
+  async function onGoogleClick() {
     try {
       const auth = getAuth();
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
 
-      // Checks for the user
-      const docRef = doc(db, "users", user.uid);
+      // check for the user
 
-      const docSnap = await getDoc(docRef); // Use getDoc to check if the document exists
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
 
       if (!docSnap.exists()) {
-        // Pass data object to setDoc
         await setDoc(docRef, {
           name: user.displayName,
           email: user.email,
           timestamp: serverTimestamp(),
         });
       }
+
       navigate("/");
     } catch (error) {
-      toast.error("Account Couldn't Signup With Google Account");
+      toast.error("Could not authorize with Google");
     }
-  };
-
+  }
   return (
     <button
       type="button"
       onClick={onGoogleClick}
-      className="w-full bg-red-500 py-3 rounded-md text-white hover:bg-red-600 shadow-md hover:shadow-lg active:bg-gray-700 flex justify-center items-center uppercase font-semibold"
+      className="flex items-center justify-center w-full bg-red-700 text-white px-7 py-3 uppercase text-sm font-medium hover:bg-red-800 active:bg-red-900 shadow-md hover:shadow-lg active:shadow-lg transition duration-150 ease-in-out rounded"
     >
-      <FcGoogle className="mr-2" />
-      Continue With Google Account
+      <FcGoogle className="text-2xl  bg-white rounded-full mr-2" />
+      Continue with Google
     </button>
   );
-};
-
-export default OAuth;
+}
